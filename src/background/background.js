@@ -31,8 +31,16 @@ async function setupOffscreenDocument(path) {
 
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   if (message.target === 'offscreen') {
+    log(`Background: Forwarding message ${message.type} to offscreen`);
     await setupOffscreenDocument('src/offscreen/offscreen.html');
     // Forward message to offscreen document
     chrome.runtime.sendMessage(message);
   }
 });
+
+async function log(msg) {
+  const data = await chrome.storage.local.get('logs');
+  const logs = data.logs || [];
+  logs.push(`[Background] ${new Date().toLocaleTimeString()}: ${msg}`);
+  await chrome.storage.local.set({ logs });
+}

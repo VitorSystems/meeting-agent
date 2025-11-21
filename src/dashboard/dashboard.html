@@ -16,6 +16,16 @@
                 <!-- Meeting items will be injected here -->
                 <p>No meetings recorded yet.</p>
             </div>
+
+            <div class="debug-section" style="margin-top: 40px; border-top: 1px solid #ccc; padding-top: 20px;">
+                <details>
+                    <summary>Debug Logs</summary>
+                    <button id="refresh-logs">Refresh</button>
+                    <button id="clear-logs">Clear</button>
+                    <pre id="log-container"
+                        style="background: #f5f5f5; padding: 10px; max-height: 300px; overflow: auto;"></pre>
+                </details>
+            </div>
         </main>
     </div>
     <script src="dashboard.js"></script>

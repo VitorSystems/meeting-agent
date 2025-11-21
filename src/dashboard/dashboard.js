@@ -1,6 +1,20 @@
 document.addEventListener('DOMContentLoaded', async () => {
     renderMeetings();
+    renderLogs();
+
+    document.getElementById('refresh-logs').addEventListener('click', renderLogs);
+    document.getElementById('clear-logs').addEventListener('click', async () => {
+        await chrome.storage.local.remove('logs');
+        renderLogs();
+    });
 });
+
+async function renderLogs() {
+    const data = await chrome.storage.local.get('logs');
+    const logs = (data.logs || []).reverse();
+    const container = document.getElementById('log-container');
+    container.textContent = logs.join('\n') || 'No logs found.';
+}
 
 async function renderMeetings() {
     const data = await chrome.storage.local.get('meetings');
@@ -62,7 +76,7 @@ async function generateSummary(index, meetings) {
 
     try {
         // Call Python Backend
-        const response = await fetch('http://localhost:5000/summarize', {
+        const response = await fetch('http://localhost:8000/summarize', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -98,6 +112,6 @@ async function generateSummary(index, meetings) {
         console.error('Error generating summary:', error);
         btn.textContent = "Error - Is Server Running?";
         btn.disabled = false;
-        alert("Could not connect to Python Backend. Make sure 'python server/app.py' is running!");
+        alert("Could not connect to Python Backend. Make sure 'uvicorn server.main:app --reload' is running on port 8000!");
     }
 }

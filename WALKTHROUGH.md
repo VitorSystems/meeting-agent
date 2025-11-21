@@ -1,4 +1,4 @@
-# Meeting Agent - Walkthrough
+# Edit-Generation-Model - Walkthrough
 
 ## How to Install
 1.  Open Chrome and navigate to `chrome://extensions`.
@@ -36,9 +36,9 @@
     ```
 2.  **Start Server**:
     ```bash
-    python app.py
+    uvicorn main:app --reload
     ```
-    *   You should see: `Running on http://127.0.0.1:5000`
+    *   You should see: `Uvicorn running on http://127.0.0.1:8000`
 
 ## Troubleshooting
 *   **Backend Error?** Make sure the Python server is running in a separate terminal.

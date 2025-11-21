@@ -4,9 +4,11 @@ chrome.runtime.onMessage.addListener((message) => {
     if (message.target === 'offscreen') {
         switch (message.type) {
             case 'start-recording':
+                log('Received start-recording message');
                 startRecording(message.streamId);
                 break;
             case 'stop-recording':
+                log('Received stop-recording message');
                 stopRecording();
                 break;
             default:
@@ -15,14 +17,26 @@ chrome.runtime.onMessage.addListener((message) => {
     }
 });
 
+async function log(msg) {
+    console.log(msg);
+    const data = await chrome.storage.local.get('logs');
+    const logs = data.logs || [];
+    logs.push(`[Offscreen] ${new Date().toLocaleTimeString()}: ${msg}`);
+    await chrome.storage.local.set({ logs });
+}
+
 let recognition;
 let isRecording = false;
 let currentTranscript = "";
 
 async function startRecording(streamId) {
-    if (isRecording) return;
+    if (isRecording) {
+        log('Already recording');
+        return;
+    }
 
     try {
+        log('Requesting user media...');
         const media = await navigator.mediaDevices.getUserMedia({
             audio: {
                 mandatory: {
@@ -32,6 +46,7 @@ async function startRecording(streamId) {
             },
             video: false
         });
+        log('User media obtained');
 
         // Continue to play the captured audio to the user.
         const output = new AudioContext();
@@ -49,41 +64,57 @@ async function startRecording(streamId) {
                 transcript: ""
             }
         });
+        log('Recording started');
 
     } catch (err) {
+        log(`Error starting recording: ${err.message}`);
         console.error('Error starting recording:', err);
     }
 }
 
 function startTranscription(stream) {
-    recognition = new webkitSpeechRecognition();
-    recognition.continuous = true;
-    recognition.interimResults = true;
-    recognition.lang = 'en-US';
+    try {
+        if (!('webkitSpeechRecognition' in self)) {
+            throw new Error('webkitSpeechRecognition not available');
+        }
+        recognition = new webkitSpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = 'en-US';
 
-    recognition.onresult = (event) => {
-        let interimTranscript = '';
-        let finalTranscript = '';
+        recognition.onresult = (event) => {
+            let interimTranscript = '';
+            let finalTranscript = '';
 
-        for (let i = event.resultIndex; i < event.results.length; ++i) {
-            if (event.results[i].isFinal) {
-                finalTranscript += event.results[i][0].transcript;
-            } else {
-                interimTranscript += event.results[i][0].transcript;
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    finalTranscript += event.results[i][0].transcript;
+                } else {
+                    interimTranscript += event.results[i][0].transcript;
+                }
             }
-        }
 
-        if (finalTranscript) {
-            currentTranscript += finalTranscript + " ";
-            updateStorage(currentTranscript);
-        }
-    };
+            if (finalTranscript) {
+                currentTranscript += finalTranscript + " ";
+                updateStorage(currentTranscript);
+                log(`Transcript updated: ${finalTranscript.substring(0, 20)}...`);
+            }
+        };
 
-    recognition.onerror = (event) => {
-        console.error('Speech recognition error', event.error);
-    };
+        recognition.onerror = (event) => {
+            log(`Speech recognition error: ${event.error}`);
+            console.error('Speech recognition error', event.error);
+        };
 
-    recognition.start();
+        recognition.onstart = () => {
+            log('Speech recognition started');
+        };
+
+        recognition.start();
+    } catch (e) {
+        log(`Error starting transcription: ${e.message}`);
+        console.error(e);
+    }
 }
 
 async function updateStorage(text) {

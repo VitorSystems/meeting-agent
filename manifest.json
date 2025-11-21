@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Meeting Agent",
+  "name": "Edit-Generation-Model",
   "version": "1.0",
   "description": "AI-powered meeting assistant that transcribes and summarizes your calls.",
   "permissions": [
@@ -26,8 +26,12 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["src/offscreen/offscreen.html"],
-      "matches": ["<all_urls>"]
+      "resources": [
+        "src/offscreen/offscreen.html"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ]
 }
